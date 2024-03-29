@@ -36,7 +36,6 @@
     shellAliases = {
       cat = "${pkgs.bat}/bin/bat";
       ls = "${pkgs.lsd}/bin/lsd";
-      icat = "${pkgs.kitty}/bin/kitty icat";
     };
   };
 }
