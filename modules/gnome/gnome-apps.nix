@@ -21,9 +21,10 @@ in
           gnome-software
         ] ++
         (with pkgs; [
-          gnome-console
           amberol
           celluloid
+          gnome-console
+          loupe
         ]);
 
         gnome.excludePackages = [ pkgs.gnome-tour ];
