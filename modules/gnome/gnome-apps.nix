@@ -13,12 +13,12 @@ in
     {
       environment = {
         systemPackages = with pkgs.gnome; [
-          nautilus
           gnome-clocks
-          gnome-tweaks
-          gnome-weather
           gnome-disk-utility
           gnome-software
+          gnome-tweaks
+          gnome-weather
+          nautilus
         ] ++
         (with pkgs; [
           amberol
