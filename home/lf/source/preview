@@ -1,0 +1,33 @@
+#!/usr/bin/env fish
+
+set thumbnail (printf "$XDG_CACHE_HOME/thumbnails/large/%s.png" (echo -n "file://$argv[1]"| md5sum| awk '{print $1}'))
+
+mkdir -p $XDG_CACHE_HOME/thumbnails/large/
+
+function preview_image
+    kitty +kitten icat --silent --stdin no --transfer-mode file --place {$argv[2]}x{$argv[3]}@{$argv[4]}x{$argv[5]} {$argv[1]} </dev/null >/dev/tty
+end
+
+switch (file --dereference --brief --mime-type $argv[1])
+    case "audio/flac"
+        if test ! -f $thumbnail; metaflac --export-picture-to=$thumbnail $argv[1]; end
+        preview_image $thumbnail $argv[2] $argv[3] $argv[4] $argv[5]
+
+    case "application/x-tar"
+        tar tf $argv[1]
+
+    case "application/zip"
+        unzip -l $argv[1]
+
+    case "video/*"
+        if test ! -f $thumbnail; ffmpeg -i $argv[1] -vframes 1 $thumbnail; end
+        preview_image $thumbnail $argv[2] $argv[3] $argv[4] $argv[5]
+
+    case "image/*"
+        preview_image $argv
+
+    case "*"
+        bat -p -f $argv[1]
+end
+
+exit 1

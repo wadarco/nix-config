@@ -15,6 +15,7 @@
   home-manager.users.raden = {
     imports = lib.importModules ../home;
 
+    xdg.enable = true;
     home.stateVersion = "24.05";
     programs.git = {
       enable = true;
