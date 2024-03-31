@@ -6,17 +6,18 @@
     defaultPackages = [ ];
 
     systemPackages = with pkgs;[
-      nixpkgs-fmt
-      nil
-      wget
-      unzip
-      unrar
-      tree
       bat
-      lf
       ffmpeg
+      file
       flac
+      lf
       libwebp
+      nil
+      nixpkgs-fmt
+      tree
+      unrar
+      unzip
+      wget
       wineWowPackages.staging
     ];
 
