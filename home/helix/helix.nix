@@ -9,6 +9,9 @@
       nil
       vscode-langservers-extracted
       nodePackages_latest.typescript-language-server
+      nodePackages_latest.prettier
     ];
   };
+
+  xdg.configFile."helix".source = ./source;
 }
