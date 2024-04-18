@@ -2,5 +2,5 @@
 
 {
   home.packages = with pkgs;[ lf ];
-  xdg.configFile."lf".source = ./source;
+  xdg.configFile."lf/" = { source = ./config; recursive = true; };
 }

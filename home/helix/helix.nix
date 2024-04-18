@@ -13,5 +13,5 @@
     ];
   };
 
-  xdg.configFile."helix".source = ./source;
+  xdg.configFile."helix/" = { source = ./config; recursive = true; };
 }
