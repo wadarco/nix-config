@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs-stable, ... }:
 
 {
   programs.kitty = {
@@ -16,7 +16,7 @@
       window_padding_width = "6";
       map = "ctrl+shift+enter launch --cwd=current";
     };
-    package = pkgs.kitty.overrideAttrs (oldAttrs: {
+    package = pkgs-stable.kitty.overrideAttrs (oldAttrs: {
       postInstall = (oldAttrs.postInstall or "") + ''
         rm -rf $out/share/icons
         mkdir -p $out/share/icons/hicolor/512x512/apps
