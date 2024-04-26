@@ -14,7 +14,7 @@ in
       systemPackages = with pkgs; [
         bun
         deno
-        nodejs_21
+        nodejs_22
       ] ++ (with nodePackages_latest;[
         pnpm
         yarn
