@@ -3,7 +3,7 @@
 {
   programs.kitty = {
     font = {
-      name = "FiraCode Nerd Font Mono";
+      name = "Lilex Nerd Font Mono Medium";
       size = 14;
     };
     theme = "Catppuccin-Mocha";

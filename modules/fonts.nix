@@ -10,19 +10,18 @@
       # noto-fonts-cjk-sans
       wqy_zenhei
       ipafont
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Hasklig" "Mononoki" ]; })
+      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Hasklig" "Lilex" ]; })
     ];
 
     fontconfig = {
       defaultFonts = {
-        monospace = [ "FiraCode Nerd Font Mono" ];
-        sansSerif = [ "FiraCode Nerd Font" ];
-        serif = [ "FiraCode Nerd Font" ];
+        monospace = [ "Lilix" ];
+        sansSerif = [ "Lilix" ];
+        serif = [ "Lilix" ];
         emoji = [ "Noto Fonts Emoji" ];
       };
     };
 
     fontDir.enable = true;
-
   };
 }
