@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -27,7 +29,12 @@
 
   programs = {
     fish.enable = true;
-    steam.enable = true;
+    steam = {
+      enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: [ pkgs.wqy_zenhei ];
+      };
+    };
     nano.enable = false;
 
     neovim = {
