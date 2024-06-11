@@ -6,6 +6,7 @@ mkdir -p $XDG_CACHE_HOME/thumbnails/large/
 
 function preview_image
     kitty +kitten icat --stdin no --transfer-mode file --place {$argv[2]}x{$argv[3]}@{$argv[4]}x{$argv[5]} $argv[1] >/dev/tty
+    exit 1
 end
 
 switch (file --dereference --brief --mime-type $argv[1])
@@ -29,5 +30,3 @@ switch (file --dereference --brief --mime-type $argv[1])
     case "*"
         bat -p -f $argv[1]
 end
-
-exit 1
