@@ -14,11 +14,10 @@ in
       systemPackages = with pkgs; [
         bun
         deno
-        nodejs_22
-      ] ++ (with nodePackages_latest;[
+        nodejs_latest
         pnpm
         yarn
-      ]);
+      ];
 
       sessionVariables = {
         NODE_REPL_HISTORY = "$XDG_CACHE_HOME/repl_history";
