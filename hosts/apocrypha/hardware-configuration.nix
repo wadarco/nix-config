@@ -27,10 +27,8 @@
     tmp.cleanOnBoot = true;
   };
 
-  hardware.opengl = {
-    driSupport = true;
-    driSupport32Bit = true;
-
+  hardware.graphics = {
+    enable32Bit = true;
     extraPackages = with pkgs; [
       rocm-opencl-icd
       rocm-opencl-runtime
