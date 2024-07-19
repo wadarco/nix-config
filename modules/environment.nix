@@ -14,6 +14,7 @@
       libwebp
       nil
       nixpkgs-fmt
+      alejandra
       tree
       unrar
       unzip
