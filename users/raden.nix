@@ -1,6 +1,9 @@
-{ pkgs, home-manager, lib, ... }:
-
 {
+  pkgs,
+  home-manager,
+  lib,
+  ...
+}: {
   imports = [
     home-manager.nixosModules.default
   ];
@@ -9,11 +12,15 @@
     description = "無名";
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "audio" "networkmanager" ];
+    extraGroups = ["wheel" "audio" "networkmanager"];
   };
 
   home-manager.users.raden = {
     imports = lib.importModules ../home;
+
+    home.packages = with pkgs; [
+      (brave.override (oldAttrs: {vulkanSupport = true;}))
+    ];
 
     home-modules.wezterm.enable = true;
 
@@ -27,7 +34,7 @@
         key = null;
         signByDefault = true;
       };
-      extraConfig = { core.editor = "hx"; };
+      extraConfig = {core.editor = "hx";};
     };
   };
 }

@@ -1,11 +1,9 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
-    defaultPackages = [ ];
+    defaultPackages = [];
 
-    systemPackages = with pkgs;[
+    systemPackages = with pkgs; [
       bat
       ffmpeg
       file
@@ -33,6 +31,8 @@
       HISTFILE = "$XDG_CACHE_HOME/bash_history";
       GNUPGHOME = "$XDG_DATA_HOME/gnupg"; # Ensure permissions by running `chmod 700 $XDG_DATA_HOME/gnupg`
       WINEPREFIX = "$XDG_DATA_HOME/wineprefixes/default";
+
+      LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.lib.makeLibraryPath [pkgs.vulkan-loader]}";
     };
 
     shellAliases = {
