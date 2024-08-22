@@ -7,7 +7,7 @@
       emmet-ls
       lua-language-server
       nil
-      vscode-langservers-extracted
+      # vscode-langservers-extracted
       nodePackages_latest.typescript-language-server
       nodePackages_latest.prettier
     ];
