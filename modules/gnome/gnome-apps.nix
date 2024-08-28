@@ -12,21 +12,18 @@ in
   config = mkIf cfg.enable
     {
       environment = {
-        systemPackages = with pkgs.gnome; [
-          gnome-clocks
-          gnome-software
-          gnome-weather
-        ] ++
-        (with pkgs; [
+        systemPackages = with pkgs; [
           amberol
           celluloid
+          gnome-clocks
           gnome-console
-          loupe
           gnome-disk-utility
+          gnome-software
           gnome-tweaks
+          gnome-weather
+          loupe
           nautilus
-
-        ]);
+        ];
 
         gnome.excludePackages = [ pkgs.gnome-tour ];
       };
