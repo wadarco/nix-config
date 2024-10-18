@@ -6,7 +6,7 @@
       name = "Lilex Nerd Font Mono Medium";
       size = 14;
     };
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     settings = {
       cursor_shape = "beam";
       disable_ligatures = "never";
