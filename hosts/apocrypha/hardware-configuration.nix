@@ -30,15 +30,9 @@
   hardware.graphics = {
     enable32Bit = true;
     extraPackages = with pkgs; [
-      amdvlk
       libva
       rocmPackages.clr.icd
     ];
-
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
-
     enable = true;
   };
 
