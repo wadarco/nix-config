@@ -14,7 +14,6 @@ in
       environment = {
         systemPackages = with pkgs; [
           amberol
-          celluloid
           gnome-clocks
           gnome-console
           gnome-disk-utility

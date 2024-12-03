@@ -5,23 +5,28 @@ set thumbnail (printf "$XDG_CACHE_HOME/thumbnails/large/%s.png" (echo -n "file:/
 mkdir -p $XDG_CACHE_HOME/thumbnails/large/
 
 function preview_image
-    kitty +kitten icat --stdin no --transfer-mode file --place {$argv[2]}x{$argv[3]}@{$argv[4]}x{$argv[5]} $argv[1] >/dev/tty
+    kitty +kitten icat --stdin no --transfer-mode file --place \
+        {$argv[2]}x{$argv[3]}@{$argv[4]}x{$argv[5]} $argv[1] >/dev/tty
     exit 1
 end
 
 switch (file --dereference --brief --mime-type $argv[1])
-    case "audio/flac"
-        if test ! -f $thumbnail; metaflac --export-picture-to=$thumbnail $argv[1]; end
+    case audio/flac
+        if test ! -f $thumbnail
+            metaflac --export-picture-to=$thumbnail $argv[1]
+        end
         preview_image $thumbnail $argv[2] $argv[3] $argv[4] $argv[5]
 
-    case "application/x-tar"
+    case application/x-tar
         tar tf $argv[1]
 
-    case "application/zip"
+    case application/zip
         unzip -l $argv[1]
 
     case "video/*"
-        if test ! -f $thumbnail; ffmpeg -i $argv[1] -vframes 1 $thumbnail; end
+        if test ! -f $thumbnail
+            ffmpeg -i $argv[1] -vframes 1 $thumbnail
+        end
         preview_image $thumbnail $argv[2] $argv[3] $argv[4] $argv[5]
 
     case "image/*"

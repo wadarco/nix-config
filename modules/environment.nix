@@ -11,12 +11,9 @@
       lf
       libwebp
       nil
-      nixpkgs-fmt
-      alejandra
-      tree
+      nixfmt-rfc-style
       unrar
       unzip
-      wget
       wineWowPackages.staging
     ];
 

@@ -5,19 +5,18 @@
     packages = with pkgs; [
       monaspace
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
-      # noto-fonts-cjk-sans
       wqy_zenhei
       ipafont
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Hasklig" "Lilex" ]; })
-    ];
+      
+    ]++ (with nerd-fonts; [fira-code jetbrains-mono hasklug]);
 
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Lilix" ];
-        sansSerif = [ "Lilix" ];
-        serif = [ "Lilix" ];
+        monospace = [ "JetBrainsMono Nerd Font Mono" ];
+        sansSerif = [ "JetBrainsMono Nerd Font Mono" ];
+        serif = [ "JetBrainsMono Nerd Font Mono" ];
         emoji = [ "Noto Fonts Emoji" ];
       };
     };

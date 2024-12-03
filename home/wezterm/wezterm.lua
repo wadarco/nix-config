@@ -7,6 +7,7 @@ end
 local config = wezterm.config_builder()
 
 config = {
+  front_end = "WebGpu",
   window_close_confirmation = 'NeverPrompt',
   color_scheme = 'Catppuccin Mocha',
   cursor_blink_ease_out = "Linear",
