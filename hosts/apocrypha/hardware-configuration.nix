@@ -31,7 +31,6 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       libva
-      rocmPackages.clr.icd
     ];
     enable = true;
   };
