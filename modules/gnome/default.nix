@@ -26,7 +26,7 @@ in
       })
 
     (mkIf config.services.pipewire.enable {
-      hardware.pulseaudio.enable = false;
+      services.pulseaudio.enable = false;
     })
   ];
 
