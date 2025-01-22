@@ -7,7 +7,6 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-      wqy_zenhei
       ipafont
       
     ]++ (with nerd-fonts; [fira-code jetbrains-mono hasklug]);

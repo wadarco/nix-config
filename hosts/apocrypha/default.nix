@@ -32,7 +32,7 @@
     steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraPkgs = pkgs: [ pkgs.wqy_zenhei ];
+        extraPkgs = pkgs: [ ];
       };
     };
     nano.enable = false;
