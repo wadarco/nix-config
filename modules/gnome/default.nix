@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.modules.gnome;
@@ -9,25 +13,17 @@ in
     modules.gnome.enable = mkEnableOption false;
   };
 
-  config = mkMerge [
-    (mkIf cfg.enable
-      {
-        services = {
-          xserver = {
-            enable = true;
-            displayManager.gdm.enable = true;
-            desktopManager.gnome.enable = true;
-          };
+  config = mkIf cfg.enable {
+    services = {
+      xserver = {
+        enable = true;
+        displayManager.gdm.enable = true;
+        desktopManager.gnome.enable = true;
+      };
 
-          gnome.core-utilities.enable = false;
-          xserver.excludePackages = [ pkgs.xterm ];
-        };
-        environment.systemPackages = with pkgs; [ gnomeExtensions.appindicator ];
-      })
-
-    (mkIf config.services.pipewire.enable {
-      services.pulseaudio.enable = false;
-    })
-  ];
-
+      gnome.core-utilities.enable = false;
+      xserver.excludePackages = [ pkgs.xterm ];
+    };
+    environment.systemPackages = with pkgs; [ gnomeExtensions.appindicator ];
+  };
 }
