@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -10,6 +15,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ zig zls ];
+    environment.systemPackages = with pkgs; [
+      zig
+      zls
+    ];
   };
 }

@@ -17,11 +17,13 @@
       map = "ctrl+shift+enter launch --cwd=current";
     };
     package = pkgs.kitty.overrideAttrs (oldAttrs: {
-      postInstall = (oldAttrs.postInstall or "") + ''
-        rm -rf $out/share/icons
-        mkdir -p $out/share/icons/hicolor/512x512/apps
-        cp -r ${./desktop_icon.png} $out/share/icons/hicolor/512x512/apps/kitty.png
-      '';
+      postInstall =
+        (oldAttrs.postInstall or "")
+        + ''
+          rm -rf $out/share/icons
+          mkdir -p $out/share/icons/hicolor/512x512/apps
+          cp -r ${./desktop_icon.png} $out/share/icons/hicolor/512x512/apps/kitty.png
+        '';
     });
     enable = true;
   };

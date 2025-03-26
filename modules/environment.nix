@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
     defaultPackages = [ ];

@@ -3,7 +3,8 @@
   home-manager,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     home-manager.nixosModules.default
   ];
@@ -12,7 +13,11 @@
     description = "無名";
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "audio" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "audio"
+      "networkmanager"
+    ];
   };
 
   home-manager.users.raden = {
@@ -29,7 +34,9 @@
         key = null;
         signByDefault = true;
       };
-      extraConfig = { core.editor = "hx"; };
+      extraConfig = {
+        core.editor = "hx";
+      };
     };
   };
 }

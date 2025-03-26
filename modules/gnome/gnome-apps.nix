@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 with lib;
 let
@@ -9,22 +14,21 @@ in
     modules.gnome.apps.enable = mkEnableOption false;
   };
 
-  config = mkIf cfg.enable
-    {
-      environment = {
-        systemPackages = with pkgs; [
-          amberol
-          gnome-clocks
-          gnome-console
-          gnome-disk-utility
-          gnome-software
-          gnome-tweaks
-          gnome-weather
-          loupe
-          nautilus
-        ];
+  config = mkIf cfg.enable {
+    environment = {
+      systemPackages = with pkgs; [
+        amberol
+        gnome-clocks
+        gnome-console
+        gnome-disk-utility
+        gnome-software
+        gnome-tweaks
+        gnome-weather
+        loupe
+        nautilus
+      ];
 
-        gnome.excludePackages = [ pkgs.gnome-tour ];
-      };
+      gnome.excludePackages = [ pkgs.gnome-tour ];
     };
+  };
 }

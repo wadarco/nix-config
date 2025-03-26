@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -11,7 +16,7 @@ in
 
   config = mkIf cfg.enable {
     environment = {
-      systemPackages = with pkgs;[
+      systemPackages = with pkgs; [
         rustup
         clang
         gcc

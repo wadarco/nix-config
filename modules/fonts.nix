@@ -2,14 +2,21 @@
 
 {
   fonts = {
-    packages = with pkgs; [
-      monaspace
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      ipafont
-      
-    ]++ (with nerd-fonts; [fira-code jetbrains-mono hasklug]);
+    packages =
+      with pkgs;
+      [
+        monaspace
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-emoji
+        ipafont
+
+      ]
+      ++ (with nerd-fonts; [
+        fira-code
+        jetbrains-mono
+        hasklug
+      ]);
 
     fontconfig = {
       defaultFonts = {

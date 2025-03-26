@@ -3,7 +3,7 @@
 {
   programs.helix = {
     enable = true;
-    extraPackages = with pkgs;[
+    extraPackages = with pkgs; [
       emmet-ls
       lua-language-server
       nil
@@ -13,5 +13,8 @@
     ];
   };
 
-  xdg.configFile."helix/" = { source = ./config; recursive = true; };
+  xdg.configFile."helix/" = {
+    source = ./config;
+    recursive = true;
+  };
 }

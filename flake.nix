@@ -8,20 +8,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs =
+    { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-      lib = pkgs.lib.extend
-        (self: super:
-          (import ./lib { inherit pkgs; lib = self; }));
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = pkgs.lib.extend (
+        self: super:
+        (import ./lib {
+          inherit pkgs;
+          lib = self;
+        })
+      );
     in
     {
       lib = lib;
 
-      nixosModules.default = { pkgs, lib, ... }: {
-        imports = lib.importModules ./modules;
-      };
+      nixosModules.default =
+        { pkgs, lib, ... }:
+        {
+          imports = lib.importModules ./modules;
+        };
 
       nixosConfigurations.apocrypha = nixpkgs.lib.nixosSystem {
         inherit system pkgs lib;
@@ -31,11 +41,12 @@
           ./hosts/apocrypha
           {
             home-manager.extraSpecialArgs = { };
-            home-manager. useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
           }
         ];
       };
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 
 }
