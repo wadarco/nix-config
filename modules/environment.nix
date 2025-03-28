@@ -16,6 +16,7 @@
       unrar
       unzip
       wineWowPackages.staging
+      ghostty
     ];
 
     sessionVariables = {
