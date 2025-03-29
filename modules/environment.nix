@@ -17,6 +17,7 @@
       unzip
       wineWowPackages.staging
       ghostty
+      exiftool
     ];
 
     sessionVariables = {
