@@ -11,9 +11,9 @@ function preview_image
 end
 
 switch (file --dereference --brief --mime-type $argv[1])
-    case audio/flac
+    case "audio/*"
         if test ! -f $thumbnail
-            metaflac --export-picture-to=$thumbnail $argv[1]
+            exiftool -b -q -q -Picture $argv[1] > $thumbnail
         end
         preview_image $thumbnail $argv[2] $argv[3] $argv[4] $argv[5]
 
