@@ -1,0 +1,43 @@
+name: update-flake-lock and merge
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      pr_number: ${{ steps.update-lock.outputs.pull-request-number }}
+      pr_result: ${{ steps.update-lock.outputs.pull-request-operation }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Update flake.lock
+        id: update-lock
+        uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "Update flake.lock"
+          pr-labels: |
+            dependencies
+            automated
+
+  squash-to-master:
+    needs: update
+    runs-on: ubuntu-latest
+    if: needs.update.outputs.pr_number != ''
+    steps:
+      - name: Merge Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ needs.update.outputs.PR_NUMBER }}
+        run: |
+          gh pr view "$PR_NUMBER" --json author --jq '.author.login == "app/github-actions"' &&
+          gh pr review --approve "$PR_NUMBER"
+          gh pr merge "$PR_NUMBER" --squash --delete-branch
