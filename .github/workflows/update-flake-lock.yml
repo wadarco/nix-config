@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       pr_url: ${{ steps.update-lock.outputs.pull-request-url }}
-      pr_result: ${{ steps.update-lock.outputs.pull-request-operation }}
 
     steps:
       - name: Checkout repository
@@ -31,7 +30,7 @@ jobs:
   squash-to-master:
     needs: update
     runs-on: ubuntu-latest
-    if: needs.update.outputs.pr_result != 'created' && needs.update.outputs.pr_url != ''
+    if: needs.update.outputs.pr_url != ''
     steps:
       - name: Merge Pull Request
         env:
