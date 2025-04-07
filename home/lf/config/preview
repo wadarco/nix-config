@@ -5,7 +5,7 @@ set thumbnail (printf "$XDG_CACHE_HOME/thumbnails/large/%s.png" (echo -n "file:/
 mkdir -p $XDG_CACHE_HOME/thumbnails/large/
 
 function preview_image
-    kitty +kitten icat --stdin no --transfer-mode file --place \
+    kitty +kitten icat --stdin no --transfer-mode memory --place \
         {$argv[2]}x{$argv[3]}@{$argv[4]}x{$argv[5]} $argv[1] >/dev/tty
     exit 1
 end
