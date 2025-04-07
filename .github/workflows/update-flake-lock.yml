@@ -9,7 +9,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     outputs:
-      pr_number: ${{ steps.update-lock.outputs.pull-request-number }}
+      pr_url: ${{ steps.update-lock.outputs.pull-request-url }}
       pr_result: ${{ steps.update-lock.outputs.pull-request-operation }}
 
     steps:
@@ -31,13 +31,13 @@ jobs:
   squash-to-master:
     needs: update
     runs-on: ubuntu-latest
-    if: needs.update.outputs.pr_number != ''
+    if: needs.update.outputs.pr_result != 'created' && needs.update.outputs.pr_url != ''
     steps:
       - name: Merge Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ needs.update.outputs.PR_NUMBER }}
+          PR_URL: ${{ needs.update.outputs.pr_url }}
         run: |
-          gh pr view "$PR_NUMBER" --json author --jq '.author.login == "app/github-actions"' &&
-          gh pr review --approve "$PR_NUMBER"
-          gh pr merge "$PR_NUMBER" --squash --delete-branch
+          gh pr view "$PR_URL" --json author --jq '.author.login == "app/github-actions"' &&
+          gh pr review --approve "$PR_URL"
+          gh pr merge "$PR_URL" --squash --delete-branch
