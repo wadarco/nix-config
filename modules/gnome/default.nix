@@ -17,11 +17,11 @@ in
     services = {
       xserver = {
         enable = true;
-        displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
       };
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
 
-      gnome.core-utilities.enable = false;
+      gnome.core-apps.enable = false;
       xserver.excludePackages = [ pkgs.xterm ];
     };
     environment.systemPackages = with pkgs; [ gnomeExtensions.appindicator ];
