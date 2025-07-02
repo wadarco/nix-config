@@ -47,6 +47,11 @@
     };
   };
 
+  virtualisation.podman = {
+    enable = true;
+    dockerSocket.enable = true;
+  };
+
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -55,5 +60,5 @@
     use-xdg-base-directories = true;
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }

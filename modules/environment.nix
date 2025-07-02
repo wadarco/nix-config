@@ -15,7 +15,7 @@
       nixfmt-rfc-style
       unrar
       unzip
-      wineWowPackages.staging
+      wineWowPackages.stable
       ghostty
       exiftool
     ];
