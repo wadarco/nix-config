@@ -52,6 +52,18 @@
     dockerSocket.enable = true;
   };
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      stdenv.cc.cc.lib
+      zlib
+      zstd
+      curl
+    ];
+  };
+  virtualisation.waydroid.enable = true;
+
   nix.settings = {
     experimental-features = [
       "nix-command"
