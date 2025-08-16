@@ -2,7 +2,6 @@
   description = "Horrible beyond anything you can imagine — but wonderful.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    ghostty.url = "github:ghostty-org/ghostty";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +12,7 @@
     {
       self,
       nixpkgs,
-      ghostty,
+
       ...
     }@inputs:
     let
@@ -21,9 +20,6 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          (self: super: { ghostty = ghostty.packages.${system}.default; })
-        ];
       };
       lib = pkgs.lib.extend (
         self: super:
@@ -44,7 +40,7 @@
 
       nixosConfigurations.apocrypha = nixpkgs.lib.nixosSystem {
         inherit system pkgs lib;
-        specialArgs = { inherit (inputs) home-manager ghostty; };
+        specialArgs = { inherit (inputs) home-manager; };
         modules = [
           self.nixosModules.default
           ./hosts/apocrypha
